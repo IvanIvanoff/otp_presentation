@@ -130,7 +130,7 @@ end
 #HSLIDE
 
 Elixir Course Team
-![Image-Absolute](assets/elixir-team-dissapointed.png)
+![Image-Absolute](assets/elixir-course-team-members.jpeg)
 
 #HSLIDE
 ## Welcome the Supervisor
