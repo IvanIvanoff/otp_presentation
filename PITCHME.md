@@ -61,6 +61,35 @@ Erlang/OTP идва с абстракции, които имплементира
 ## Demo + [link](http://learnyousomeerlang.com/what-is-otp#its-the-open-telecom-platform)
 
 #HSLIDE
+
+```elixir
+{:ok, pid} = KittyServer.start_link()
+:sys.trace(pid, true)
+```
+
+#HSLIDE
+### Repeating job
+```elixir
+defmodule RepeatingJob do
+  use GenServer
+  def start_link(), do: GenServer.start_link(__MODULE__, %{})
+
+  def init(state) do
+    schedule_work()
+    {:ok, state}
+  end
+
+  def handle_info(:work, state) do
+    IO.puts("HI")
+    schedule_work()
+    {:noreply, state}
+  end
+
+  defp schedule_work(), do: Process.send_after(self(), :work, 1_000)
+end
+```
+
+#HSLIDE
 Нека да разгледаме един по-прост пример за GenServer, който конвертира стрингове към числа.
 ```elixir
 defmodule StringToInt do
