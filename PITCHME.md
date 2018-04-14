@@ -57,6 +57,8 @@ Erlang/OTP идва с абстракции, които имплементира
 #HSLIDE
 ## Welcome the GenServer
 
+#HSLIDE
+## Demo + [link](http://learnyousomeerlang.com/what-is-otp#its-the-open-telecom-platform)
 
 #HSLIDE
 Нека да разгледаме един по-прост пример за GenServer, който конвертира стрингове към числа.
@@ -129,3 +131,6 @@ end
 
 Elixir Course Team
 ![Image-Absolute](assets/elixir-team-dissapointed.png)
+
+#HSLIDE
+## Welcome the Supervisor
