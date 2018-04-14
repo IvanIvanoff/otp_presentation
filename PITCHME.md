@@ -97,7 +97,22 @@ iex(4)> GenServer.call(pid, "100s")
 ![Image-Absolute](assets/sad-panda.jpg)
 
 #HSLIDE
-Genius Idea!
+
+#### Genius Idea!
+
+```elixir
+def handle_call(string, _from, state) do
+  try do
+    result = String.to_integer(string)
+    {:reply, result, state}
+  rescue
+    error -> {:reply, "Cannot convert #{string} to integer. Reason: #{inspect(error)}", state}
+  end
+end
+```
+
+#HSLIDE
+#### "Genius" Idea!
 
 ```elixir
 def handle_call(string, _from, state) do
@@ -112,16 +127,5 @@ end
 
 #HSLIDE
 
-<table>
-  <tr>
-    <td>Meddle<br/><img src="assets/face1.jpeg" width="150px" /></td>
-    <td>Вальо<br/><img src="assets/face2.jpeg" width="150px" /></td>
-    <td>Иван<br/><img src="assets/face3.jpeg" width="150px" /></td>
-  </tr>
-
-  <tr>
-    <td>Никола<br/><img src="assets/face4.jpeg" width="150px" /></td>
-    <td>Слави<br/><img src="assets/face5.jpeg" width="150px" /></td>
-    <td>Андрей<br/><img src="assets/face6.jpeg" width="150px" /></td>
-  </tr>
-</table>
+Elixir Course Team
+![Image-Absolute](assets/elixir-team-dissapointed.png)
