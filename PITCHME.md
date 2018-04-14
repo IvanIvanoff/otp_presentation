@@ -61,10 +61,50 @@ Erlang/OTP идва с абстракции, които имплементира
 ## Demo + [link](http://learnyousomeerlang.com/what-is-otp#its-the-open-telecom-platform)
 
 #HSLIDE
+#### init
+Инициализира началното състояние и извършва всички one-time задачи, от които зависи. Резултат от изпълнението:
+* {:ok, state}
+* {:ok, state, timeout}
+* {:ok, state, :hibernate} # Извиква BIF :erlang.hibernate
+* {:stop, reason}
+* :ignore
 
+NOTE: Докато `init/1` се изпълнява, процесът, който създава GenServer-а блокира.
+
+#HSLIDE
+#### handle_call
+Синхронно обработва съобщение. Резултат от изпълнението:
+* {:reply, reply, new_state}
+* {:reply, reply, new_state,timeout}
+* {:reply, Reply, new_state,:hibernate}
+* {:noreply, new_state}
+* {:noreply, new_state, timeout}
+* {:noreply, new_state, :hibernate}
+* {:stop, Reason, reply,new_state}
+* {:stop, Reason, new_state}
+
+#HSLIDE
+#### handle_cast
+Асинхронно обработва съобщение. Резултат от изпълнението:
+* {:noreply, new_state}
+* {:noreply, new_state, timeout}
+* {:noreply, new_state, :hibernate}
+* {:stop, Reason, new_state}
+
+#HSLIDE
+#### handle_info
+Прилича на `handle_cast`, но обработва всички останали съобщения, изпратени чрез `send`, както и `init/1` `timeout`. Резултат от изпълнението:
+* {:noreply, new_state}
+* {:noreply, new_state, timeout}
+* {:noreply, new_state, :hibernate}
+* {:stop, Reason, new_state}
+
+#HSLIDE
 ```elixir
 {:ok, pid} = KittyServer.start_link()
 :sys.trace(pid, true)
+:sys.get_state(pid)
+:sys.get_status(pid)
 ```
 
 #HSLIDE
