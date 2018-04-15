@@ -18,12 +18,13 @@
 
 ### Какво НЕ е OTP
 * OTP не се използва само за писане на телеком програми <!-- .element: class="fragment" -->
-* OTP не е нещо отделно от Erlang. Дистрибуцията се нарича Erlang/OTP, а не Erlang + sometimes OTP. <!-- .element: class="fragment" -->
+* OTP вече не е нещо отделно от Erlang. Дистрибуцията се нарича Erlang/OTP, а не Erlang + sometimes OTP. <!-- .element: class="fragment" -->
 * Github организацията се нарича erlang, а репото - otp  <!-- .element: class="fragment" -->
 * OTP не е само стандартната библиотека на Erlang <!-- .element: class="fragment" -->
 
 #HSLIDE
 ### Какво е OTP
+* Създаден около 1996г.
 * Интерпретатор и компилатор на Erlang <!-- .element: class="fragment" -->
 * Стандартните библиотеки на Erlang <!-- .element: class="fragment" -->
 * Dialyzer, за който говорихме в Тип-спецификации и поведения <!-- .element: class="fragment" -->
@@ -53,6 +54,14 @@
 Но няма често да ви се налага ръчно да имплементирате OTP-compliant частта.
 
 Erlang/OTP идва с абстракции, които имплементират OTP-съвместими процеси.
+
+#HSLIDE
+Поведения, които ще разгледаме в курса
+* GenServer
+* Supervisor
+* Application
+* <s>GenEvent</s> Supervisor + GenServer (Ако остане време)
+* GenStage (с Никола)
 
 #HSLIDE
 ![Image-Absolute](assets/common-pattern.png)
@@ -213,5 +222,35 @@ Elixir Course Team
 ## Welcome the Supervisor
 
 #HSLIDE
+##Supervisor
+Процес, който наблюдава други процеси и предприема действия, когато те умрат.
+Имплементиран е като `GenServer` и използва `link`, `monitor` и `trap_exit`.
 
+#HSLIDE
+
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
+`use Genserver` също така дефинира функцията `child_spec/1`, която позволява модулът да бъде стартиран в супервайзор дърво.
+```elixir
+def child_spec(arg) do
+  default = %{
+    id: __MODULE__,
+    start: {__MODULE__, :start_link, [arg]}
+  }
+  Supervisor.child_spec(default, unquote(Macro.escape(opts)))
+end
+```
 ## Demo
+
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
+## <s>GenEvent</s> Supervisor + GenServer
+
+`GenEvent` имплементира функционалност за обработка на събития.
+Добавяме `handler`-и чрез `add_handler/3` или `add_sup_handler/3` и изпращаме събития чрез `notify/2`
+
+
+`GenEvent` e `deprecated` в Elixir.
+
+
+Хубаво упражнение върху `Supervisor` и `GenServer` е имплементацията на `GenEvent` - [линк](https://www.google.bg/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwj06Nbtk7zaAhVjOpoKHdQYDVUQFggnMAA&url=http%3A%2F%2Fblog.plataformatec.com.br%2F2016%2F11%2Freplacing-genevent-by-a-supervisor-genserver%2F&usg=AOvVaw3HO1YcKGV9WOZ1PjoZ_Muk)
