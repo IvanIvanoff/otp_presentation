@@ -160,7 +160,9 @@ terminate/2 не се извиква, ако `GenServer` бъде бъде бр�
 ```elixir
 defmodule RepeatingJob do
   use GenServer
-  def start_link(), do: GenServer.start_link(__MODULE__, %{})
+  def start_link() do
+    GenServer.start_link(__MODULE__, %{})
+  end
 
   def init(state) do
     schedule_work()
@@ -173,8 +175,21 @@ defmodule RepeatingJob do
     {:noreply, state}
   end
 
-  defp schedule_work(), do: Process.send_after(self(), :work, 1_000)
+  defp schedule_work() do
+    Process.send_after(self(), :work, 1_000)
+  end
 end
+```
+
+#HSLIDE
+Ами ако искаме да изпратим съобщение, което да се обработи с `handle_cast/2`?
+```elixir
+  Process.send_after(self(), {:"$gen_cast", :work}, 1_000)
+```
+
+Еквивалентно за `handle_call/3` имаме:
+```elixir
+  Process.send_after(self(), {:"$gen_call", :work}, 1_000)
 ```
 
 #HSLIDE
