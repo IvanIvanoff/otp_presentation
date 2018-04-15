@@ -290,6 +290,17 @@ Let it crash is not what you think it is!
 ...и какво общо има с ракетите?
 
 #HSLIDE
+Bohrbug vs Heisenbug
+
+#HSLIDE
+Concurrency bugs are notorious for disappearing when using a debugger that may force every operation in the system to be serialised.
+![Image-Absolute](assets/sad-panda.jpg)
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
+*The whole language is built with the purpose of taking crashes and failures, and making them so manageable it becomes possible to use them as a tool.*
+
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
 ## Supervisor
 * `Supervisor` e `GenServer`
 * `Supervisor` е главна част от `fault tolerance` частта
@@ -353,8 +364,6 @@ end
 `GenEvent` имплементира функционалност за обработка на събития.
 Добавяме `handler`-и чрез `add_handler/3` или `add_sup_handler/3` и изпращаме събития чрез `notify/2`
 
-
 `GenEvent` e `deprecated` в Elixir.
-
 
 Хубаво упражнение върху `Supervisor` и `GenServer` е имплементацията на `GenEvent` - [линк](https://www.google.bg/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwj06Nbtk7zaAhVjOpoKHdQYDVUQFggnMAA&url=http%3A%2F%2Fblog.plataformatec.com.br%2F2016%2F11%2Freplacing-genevent-by-a-supervisor-genserver%2F&usg=AOvVaw3HO1YcKGV9WOZ1PjoZ_Muk)
