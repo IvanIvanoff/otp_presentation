@@ -103,9 +103,9 @@ NOTE: Докато `init/1` се изпълнява, процесът, койт�
 * {:reply, reply, new_state}
 * {:reply, reply, new_state, timeout}
 * {:reply, Reply, new_state, :hibernate}
-* {:noreply, new_state}
-* {:noreply, new_state, timeout}
-* {:noreply, new_state, :hibernate}
+* {:noreply, new_state} <- !!!
+* {:noreply, new_state, timeout} <- !!!
+* {:noreply, new_state, :hibernate} <- !!!
 * {:stop, reason, reply, new_state}
 * {:stop, reason, new_state}
 
@@ -273,13 +273,32 @@ Elixir Course Team
 #HSLIDE
 ## Welcome the Supervisor
 
+
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
+## Supervisor Tree
+Базова концепция в Erlang/OTP е супервайзор дървото. Това е модел за структуриране на процесите, базиран на идеята за работници (workers) и супервайзори (supervisors).
+
+`worker` е всеки процес, който не е `supervisor`.
+
+#HSLIDE
+![Supervisor Tree](assets/sup-tree.png)
+
+#HSLIDE
+
+Let it crash is not what you think it is!
+
 #HSLIDE
 ## Supervisor
 * `Supervisor` e `GenServer`
-* `Supervisor` е главна част от `fault tolerance`
+* `Supervisor` е главна част от `fault tolerance` частта
 * `Supervisor` определя как ще се стартира и спира нашата програма
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
+
+#HSLIDE
+#### Но нека първо да видим един пример
+## Demo `StringToInt`
 
 #HSLIDE
 За да стартираме един процес в супервайзор дърво, то той трябва да дефинира функция `child_spec/1`, която връща структура с 5 елемента:
@@ -305,20 +324,6 @@ end
 ```
 
 #HSLIDE
-#### Но нека първо да видим един пример
-## Demo `StringToInt`
-
-#HSLIDE
-<!-- .slide: style="text-align: left;"> -->
-## Supervisor Tree
-Базова концепция в Erlang/OTP е супервайзор дървото. Това е модел за структуриране на процесите, базиран на идеята за работници (workers) и супервайзори (supervisors).
-
-`worker` е всеки процес, който не е `supervisor`.
-
-#HSLIDE
-![Supervisor Tree](assets/sup-tree.png)
-
-#HSLIDE
 
 * Как решава дали да стартира даден процес?
 * Само терминираният процес ли ще бъде стартиран?
@@ -338,6 +343,7 @@ end
 * `:one_for_one`
 * `:rest_for_one`
 * `:one_for_all`
+* <s>`:simple_one_for_one`</s>
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
