@@ -56,6 +56,7 @@
 Erlang/OTP идва с абстракции, които имплементират OTP-съвместими процеси.
 
 #HSLIDE
+<!-- .slide: style="text-align: left;"> -->
 Поведения, които ще разгледаме в курса
 * GenServer
 * Supervisor
@@ -73,6 +74,7 @@ Erlang/OTP идва с абстракции, които имплементира
 #HSLIDE
 
 #HSLIDE
+<!-- .slide: style="text-align: left;"> -->
 #### 6 callbacks ("отклици" - патриотичен превод, [източник](https://dev.bg/javascript-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%B8%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D0%B8/?utm_source=fb_post_astea_js_april12))
 * init/1
 * handle_call/3
@@ -182,6 +184,7 @@ end
 ```
 
 #HSLIDE
+<!-- .slide: style="text-align: left;"> -->
 Ами ако искаме да изпратим съобщение, което да се обработи с `handle_cast/2`?
 ```elixir
   Process.send_after(self(), {:"$gen_cast", :work}, 1_000)
@@ -234,7 +237,6 @@ iex(4)> GenServer.call(pid, "100s")
 #HSLIDE
 
 #### Genius Idea!
-
 ```elixir
 def handle_call(string, _from, state) do
   try do
@@ -247,18 +249,20 @@ end
 ```
 
 #HSLIDE
-#### "Genius" Idea!
-
-```elixir
-def handle_call(string, _from, state) do
-  try do
-    result = String.to_integer(string)
-    {:reply, result, state}
-  rescue
-    error -> {:reply, "Cannot convert #{string} to integer. Reason: #{inspect(error)}", state}
-  end
-end
 ```
+iex(1)> {:ok, pid} = StringToInt.start_link
+{:ok, #PID<0.119.0>}
+iex(2)> GenServer.call(pid, "100")
+100
+iex(3)> GenServer.call(pid, "100s")
+"Cannot convert 100s to integer. Reason: %ArgumentError{message: \"argument error\"}"
+iex(4)> GenServer.call(pid, "100")
+100
+```
+
+#HSLIDE
+You
+![Image-Absolute](assets/you-face.jpeg)
 
 #HSLIDE
 
