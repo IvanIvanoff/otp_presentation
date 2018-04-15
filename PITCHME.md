@@ -325,7 +325,16 @@ Concurrency bugs are notorious for disappearing when using a debugger that may f
 #HSLIDE
 * `:type` - `:worker` или `:supervisor`
 #HSLIDE
+Съществува шести ключ `:modules`, който автоматично се инициализира от стойността на `:start` и рядко го променяме.
+#HSLIDE
 `:id` и `:start` са задължителни
+
+#HSLIDE
+Възможни `:shutdown` стойности са:
+* `:brutal_kill`
+* число > 0 - време в милисекунди, което ще се изчака след като на процесът бъде изпратен `:shutdown` сигнал.
+* `:infinity` - работи като таймаут, но е равен на безкрайност.
+
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
@@ -350,18 +359,38 @@ end
 * Защо трябва да имаме йерархична структура, а не всичко да е под един супервайзор?
 
 #HSLIDE
-#### Как решава дали да рестартира даден процес?
-Това зависи от `:restart` опцията. По подразбиране тя е `:permanent`. Имаме:
+<!-- .slide: style="text-align: left;"> -->
+Решениието дали да се рестартира даден процес зависи от `:restart` опцията. По подразбиране тя е `:permanent`. Имаме:
 * `:permanent` - процесът винаги се рестартира
 * `:temporary` - процесът никога не се рестартира
 * `:transient` - процесът се рестартира само, ако не завърши нормално, т.е. с причина, различна от `:normal`, `:shutdown` или `{:shutdown, term}`
 #HSLIDE
 #### Стратегии
+<!-- .slide: style="text-align: left;"> -->
+Стратегията определя дали и кои процеси да бъдат рестартирани заедно с терминирания.
 * `:one_for_one`
 * `:rest_for_one`
 * `:one_for_all`
 * <s>`:simple_one_for_one`</s>
 
+#HSLIDE
+<!-- .slide: style="text-align: left;"> -->
+`:max_restarts` и `:max_seconds`.
+
+*`:max_restarts` е максималният разрешен брой рестартирания на процес за определен интервал от време.
+*`:max_seconds` е интервалът в секунди, за който `:max_seconds` важи
+
+#HSLIDE
+Стартиране на Supervisor
+* Стартира се чрез `Supervisor.start_link/2`
+* Depth-first стартиране на всички деца в реда на инициализиране
+
+#HSLIDE
+Терминиране на Supervisor
+* Всички деца се спират в обратен на стартирането им ред
+* Терминирането на децата се случва чрез `Process.exit(child_pid, :shutdown)` и чака по подразбиране 5 секунди
+* В случай, че за 5 секуни не получи отговор, супервайзорът терминира детето със сигнал `:brutal_kill`
+* `trap_exit` does matter
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
 ## <s>GenEvent</s> Supervisor + GenServer
@@ -372,3 +401,25 @@ end
 `GenEvent` e `deprecated` в Elixir.
 
 Хубаво упражнение върху `Supervisor` и `GenServer` е имплементацията на `GenEvent` - [линк](https://www.google.bg/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwj06Nbtk7zaAhVjOpoKHdQYDVUQFggnMAA&url=http%3A%2F%2Fblog.plataformatec.com.br%2F2016%2F11%2Freplacing-genevent-by-a-supervisor-genserver%2F&usg=AOvVaw3HO1YcKGV9WOZ1PjoZ_Muk)
+
+#HSLIDE
+## Application
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
+#HSLIDE
+
