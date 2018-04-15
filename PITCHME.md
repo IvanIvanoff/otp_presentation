@@ -81,6 +81,7 @@ Erlang/OTP идва с абстракции, които имплементира
 * terminate/2
 * code_change/3
 * <s>start_link/N</s> (не е callback)
+#HSLIDE
 #### init/1
 <!-- .slide: style="text-align: left;"> -->
 Инициализира началното състояние и извършва всички one-time задачи, от които зависи. Трябва да върне:
