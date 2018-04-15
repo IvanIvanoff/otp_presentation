@@ -64,10 +64,8 @@ Erlang/OTP идва с абстракции, които имплементира
 * GenStage (с Никола)
 
 #HSLIDE
-![Image-Absolute](assets/common-pattern.png)
-
-#HSLIDE
 ## Welcome the GenServer
+![Image-Absolute](assets/common-pattern.png)
 
 #HSLIDE
 ## Demo + [link](http://learnyousomeerlang.com/what-is-otp#its-the-open-telecom-platform)
