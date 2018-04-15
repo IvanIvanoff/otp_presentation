@@ -73,7 +73,7 @@ Erlang/OTP идва с абстракции, които имплементира
 #HSLIDE
 
 #HSLIDE
-## 6 callbacks ("отклици" - патриотичен превод, [източник](https://dev.bg/javascript-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%B8%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D0%B8/?utm_source=fb_post_astea_js_april12))
+#### 6 callbacks ("отклици" - патриотичен превод, [източник](https://dev.bg/javascript-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%B8%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D0%B8/?utm_source=fb_post_astea_js_april12))
 * init/1
 * handle_call/3
 * handle_cast/2
@@ -98,13 +98,13 @@ NOTE: Докато `init/1` се изпълнява, процесът, койт�
 <!-- .slide: style="text-align: left;"> -->
 Синхронно обработва съобщение. Трябва да върне:
 * {:reply, reply, new_state}
-* {:reply, reply, new_state,timeout}
-* {:reply, Reply, new_state,:hibernate}
+* {:reply, reply, new_state, timeout}
+* {:reply, Reply, new_state, :hibernate}
 * {:noreply, new_state}
 * {:noreply, new_state, timeout}
 * {:noreply, new_state, :hibernate}
-* {:stop, Reason, reply,new_state}
-* {:stop, Reason, new_state}
+* {:stop, reason, reply, new_state}
+* {:stop, reason, new_state}
 
 #HSLIDE
 #### handle_cast/2
