@@ -270,10 +270,15 @@ Elixir Course Team
 
 #HSLIDE
 ##Supervisor
-Процес, който наблюдава други процеси и предприема действия, когато те умрат.
-Имплементиран е като `GenServer` и използва `link`, `monitor` и `trap_exit`.
+* `Supervisor` e `GenServer`
+* `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
+* `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
 
 #HSLIDE
+#### Но нека първо да видим един пример
+
+#HSLIDE
+## Demo `StringToInt`
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
@@ -287,7 +292,6 @@ def child_spec(arg) do
   Supervisor.child_spec(default, unquote(Macro.escape(opts)))
 end
 ```
-## Demo
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
