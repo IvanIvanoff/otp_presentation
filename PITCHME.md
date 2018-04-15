@@ -66,7 +66,7 @@ Erlang/OTP идва с абстракции, които имплементира
 
 #HSLIDE
 ## Welcome the GenServer
-![Image-Absolute](assets/common-pattern.png)
+![](assets/common-pattern.png)
 
 #HSLIDE
 ## Demo + [link](http://learnyousomeerlang.com/what-is-otp#its-the-open-telecom-platform)
@@ -75,7 +75,8 @@ Erlang/OTP идва с абстракции, които имплементира
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
-#### 6 callbacks ("отклици" - патриотичен превод, [източник](https://dev.bg/javascript-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%B8%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D0%B8/?utm_source=fb_post_astea_js_april12))
+##### GenServer има 6 callbacks, които имплементираме
+("отклици" - патриотичен превод, [източник](https://dev.bg/javascript-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%B8%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D0%B8/?utm_source=fb_post_astea_js_april12))
 * init/1
 * handle_call/3
 * handle_cast/2
@@ -89,7 +90,7 @@ Erlang/OTP идва с абстракции, които имплементира
 Инициализира началното състояние и извършва всички one-time задачи, от които зависи. Трябва да върне:
 * {:ok, state}
 * {:ok, state, timeout}
-* {:ok, state, :hibernate} # Извиква BIF :erlang.hibernate
+* {:ok, state, :hibernate}
 * {:stop, reason}
 * :ignore
 
@@ -232,7 +233,7 @@ iex(4)> GenServer.call(pid, "100s")
 ```
 
 #HSLIDE
-![Image-Absolute](assets/sad-panda.jpg)
+![](assets/sad-panda.jpg)
 
 #HSLIDE
 
@@ -263,19 +264,17 @@ iex(4)> GenServer.call(pid, "100")
 #HSLIDE
 You
 
-![Image-Absolute](assets/you-face.jpeg)
+![](assets/you-face.jpeg)
 
 #HSLIDE
-
 Elixir Course Team
-
-![Image-Absolute](assets/elixir-course-team-members.jpeg)
+![elixir-team](assets/elixir-course-team-members.jpeg)
 
 #HSLIDE
 ## Welcome the Supervisor
 
 #HSLIDE
-##Supervisor
+## Supervisor
 * `Supervisor` e `GenServer`
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
