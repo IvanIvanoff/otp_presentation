@@ -281,9 +281,16 @@ Elixir Course Team
 
 #HSLIDE
 #### Но нека първо да видим един пример
+## Demo `StringToInt`
 
 #HSLIDE
-## Demo `StringToInt`
+## Supervisor Tree
+Базова концепция в Erlang/OTP е супервайзор дървото. Това е модел за структуриране на процесите, базиран на идеята за работници (workers) и супервайзори (supervisors).
+
+`worker` е всеки процес, който не е `supervisor`.
+
+#HSLIDE
+![Supervisor Tree](assets/sup-tree.png)
 
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
