@@ -287,6 +287,7 @@ Elixir Course Team
 #HSLIDE
 
 Let it crash is not what you think it is!
+...и какво общо има с ракетите?
 
 #HSLIDE
 ## Supervisor
