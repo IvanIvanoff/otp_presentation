@@ -262,11 +262,13 @@ iex(4)> GenServer.call(pid, "100")
 
 #HSLIDE
 You
+
 ![Image-Absolute](assets/you-face.jpeg)
 
 #HSLIDE
 
 Elixir Course Team
+
 ![Image-Absolute](assets/elixir-course-team-members.jpeg)
 
 #HSLIDE
