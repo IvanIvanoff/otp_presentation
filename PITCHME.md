@@ -293,6 +293,7 @@ Bohrbug vs Heisenbug
 
 #HSLIDE
 Concurrency bugs are notorious for disappearing when using a debugger that may force every operation in the system to be serialised.
+
 ![Image-Absolute](assets/sad-panda.jpg)
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
@@ -304,6 +305,12 @@ Concurrency bugs are notorious for disappearing when using a debugger that may f
 * `Supervisor` e `GenServer`
 * `Supervisor` е главна част от `fault tolerance` частта
 * `Supervisor` определя как ще се стартира и спира нашата програма
+
+#HSLIDE
+![Supervisor Tree Shutdown](assets/sup-tree-shutdown.png)
+
+#HSLIDE
+## Supervisor
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
 
