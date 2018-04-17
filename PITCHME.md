@@ -310,6 +310,9 @@ Concurrency bugs are notorious for disappearing when using a debugger that may f
 ![Supervisor Tree Shutdown](assets/sup-tree-shutdown.png)
 
 #HSLIDE
+#### Това (proper shutdown) с какво е полезно за Task.Supervisor?
+
+#HSLIDE
 ## Supervisor
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
