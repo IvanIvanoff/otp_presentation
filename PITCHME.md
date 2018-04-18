@@ -402,6 +402,28 @@ end
 * В случай, че за 5 секуни не получи отговор, супервайзорът терминира детето със сигнал `:brutal_kill`
 * `trap_exit` does matter
 #HSLIDE
+Module-based Supervisor
+[линк](https://hexdocs.pm/elixir/Supervisor.html#module-module-based-supervisors)
+#HSLIDE
+```elixir
+defmodule MyApp.Supervisor do
+  # Automatically defines child_spec/1
+  use Supervisor
+
+  def start_link(arg) do
+    Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
+  end
+
+  def init(_arg) do
+    children = [
+      {Stack, [:hello]}
+    ]
+
+    Supervisor.init(children, strategy: :one_for_one)
+  end
+end
+```
+#HSLIDE
 <!-- .slide: style="text-align: left;"> -->
 ## <s>GenEvent</s> Supervisor + GenServer
 
@@ -421,16 +443,16 @@ end
 Application се грижи за едно `supervision` дърво и средата в която то работи.
 
 #HSLIDE
+А кой се грижи за Application?
 
-## Applicatin controller
 #HSLIDE
-##Application master(и)
+![](assets/application-controller)
 
 #HSLIDE
 ## 2 callbacks:
 * start/2
 * stop/1
-*
+
 #HSLIDE
 ## start/2
 * стартира top-level supervisor
