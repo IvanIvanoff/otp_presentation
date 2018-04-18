@@ -289,7 +289,7 @@ Let it crash is not what you think it is!
 ...и какво общо има с ракетите?
 
 #HSLIDE
-Bohrbug vs Heisenbug
+#### Bohrbug vs Heisenbug
 
 #HSLIDE
 Concurrency bugs are notorious for disappearing when using a debugger that may force every operation in the system to be serialised.
@@ -308,11 +308,7 @@ Concurrency bugs are notorious for disappearing when using a debugger that may f
 
 #HSLIDE
 ![Supervisor Tree Shutdown](assets/sup-tree-shutdown.png)
-
-#HSLIDE
-#### Това (proper shutdown) с какво е полезно за Task.Supervisor?
-
-#HSLIDE
+x#HSLIDE
 ## Supervisor
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
@@ -401,8 +397,17 @@ end
 * Терминирането на децата се случва чрез `Process.exit(child_pid, :shutdown)` и чака по подразбиране 5 секунди
 * В случай, че за 5 секуни не получи отговор, супервайзорът терминира детето със сигнал `:brutal_kill`
 * `trap_exit` does matter
+
 #HSLIDE
-Module-based Supervisor
+#### Dynamic Supervisor
+
+#HSLIDE
+
+#### Task.Supervisor
+
+#HSLIDE
+#### Module-based Supervisor
+
 [линк](https://hexdocs.pm/elixir/Supervisor.html#module-module-based-supervisors)
 #HSLIDE
 ```elixir
@@ -423,6 +428,9 @@ defmodule MyApp.Supervisor do
   end
 end
 ```
+
+#HSLIDE
+
 #HSLIDE
 <!-- .slide: style="text-align: left;"> -->
 ## <s>GenEvent</s> Supervisor + GenServer
