@@ -308,7 +308,7 @@ Concurrency bugs are notorious for disappearing when using a debugger that may f
 
 #HSLIDE
 ![Supervisor Tree Shutdown](assets/sup-tree-shutdown.png)
-x#HSLIDE
+#HSLIDE
 ## Supervisor
 * `Supervisor` е процес, който стартира други процеси, които наричаме негови деца (children)
 * `Supervisor` e процес, който наблюдава своите деца и предприема действия, когато те се терминират.
@@ -447,6 +447,7 @@ end
 
 #HSLIDE
 Компонент, който имплементира специфична логика, която му позволява да бъде стартиран, спиран и преизползван в други application-ни.
+
 #HSLIDE
 Application се грижи за едно `supervision` дърво и средата в която то работи.
 
@@ -454,7 +455,12 @@ Application се грижи за едно `supervision` дърво и среда
 А кой се грижи за Application?
 
 #HSLIDE
-![](assets/application-controller)
+![](assets/application-controller.png)
+
+#HSLIDE
+
+### :observer
+![](assets/blogit.png)
 
 #HSLIDE
 ## 2 callbacks:
@@ -477,5 +483,46 @@ state по подразбиране е `[]`
 
 #HSLIDE
 
-#HSLIDE
+### Други функции
 
+* Application.get_application/1
+* Application.load/1
+* Application.ensure_all_started/2
+
+#HSLIDE
+```elixir
+  def project do
+    [
+      app: :app_test,
+      version: "0.1.0",
+      elixir: "~> 1.6",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
+  end
+```
+#HSLIDE
+```elixir
+  # Run "mix help compile.app" to learn about applications.
+  def application do
+    [
+      # applications: [],
+      extra_applications: [:logger],
+      included_applications: [],
+      mod: {AppTest.Application, []}upda
+    ]
+  end
+```
+
+#HSLIDE
+```elixir
+  # Run "mix help deps" to learn about dependencies.
+  defp deps do
+    [
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+    ]
+  end
+end
+
+```
